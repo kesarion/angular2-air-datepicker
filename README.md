@@ -95,14 +95,14 @@ export class HomeModule {}
 
 There are a few differences from the original and many features are not yet implemented. Pull requests are humbly encouraged and accepted. If there is enough support for a feature it will likely be done quicker; please create an issue for any request.
 
-##### Differences from original:
+#### Differences from original:
 
 - A Date Object is used as input/output; The developer is responsible for potentially displaying and formatting the selected date;
 - First day in week is Monday, always;
 - Default language is English;
 - The language options are heavily simplified (names only for days, minDays and months);
 
-##### To be implemented:
+#### To be implemented:
 
 - **input + tooltip version**; currently it's just the simple, div based datepicker;
 - **month & year picking**;
@@ -111,7 +111,7 @@ There are a few differences from the original and many features are not yet impl
 
 Those would be the main features that need to be implemented further. There are many more features in the original, some of them don't apply here, others will be implemented based on interest or from pull requests.
 
-##### JS Bundle
+#### JS Bundle
 
 There is no compiled bundle; this component is meant to be loaded and compiled along with other dependencies during the build process (using webpack, rollup or similar). In case of a test project without a build process, you can simply copy the component files and use them as any other custom component.
 
