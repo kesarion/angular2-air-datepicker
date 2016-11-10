@@ -1,0 +1,7 @@
+{
+  "name": "angular2-air-datepicker",
+  "version": "0.1.0",
+  "repository": "kesarion/angular2-air-datepicker",
+  "main": "index.ts",
+  "license": "MIT"
+}
