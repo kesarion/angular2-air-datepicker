@@ -50,7 +50,7 @@ export class AirCalendar {
         if (selectedDate > daysInMonth) {
             selectedDate = daysInMonth;
         }
-        this.airDays[currentDate].selected = true;
+        this.airDays[selectedDate].selected = true;
         if (date.getMonth() == this.month) {
             // set the current date if it's the current month
             this.airDays[firstDayOfMonth + date.getDate() - 1].current = true;
