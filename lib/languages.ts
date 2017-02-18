@@ -58,6 +58,12 @@ export const LANGUAGES: Map<string, AirLanguage> = new Map([
         [ 'H', 'K', 'Sz', 'Cs', 'P', 'Sz', 'V' ],
         [ 'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December' ]
     )] as [string, AirLanguage],
+    
+    ['it', new AirLanguage(
+        [ 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica' ],
+        [ 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa', 'Do' ],
+        [ 'Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno', 'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre' ]
+    )] as [string, AirLanguage],
 
     ['jp', new AirLanguage(
         [ '月曜日',	'火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日' ],
