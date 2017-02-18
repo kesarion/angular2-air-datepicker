@@ -45,14 +45,13 @@ export class AirCalendar {
             this.airDays.push(new AirDay(date, weekend.progress()));
         }
 
-        // set selected date - same as previously selected date, unless it's greater than the number of days in the month
-        let selectedDate = firstDayOfMonth + this.date - 1;
-        if (selectedDate > daysInMonth) {
-            selectedDate = daysInMonth;
+        if (this.date > daysInMonth) {
+            this.date = daysInMonth; // select the maximum available this month instead
         }
+        let selectedDate = firstDayOfMonth + this.date - 1;
         this.airDays[selectedDate].selected = true;
         if (date.getMonth() == this.month) {
-            // set the current date if it's the current month
+            // set the current date if it's the current month, regardless of year for now
             this.airDays[firstDayOfMonth + date.getDate() - 1].current = true;
         }
 
