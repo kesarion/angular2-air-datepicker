@@ -22,6 +22,9 @@ export class AirDatepicker implements OnInit {
         if (!this.airOptions) {
             this.airOptions = new AirOptions;
         }
+        if(!this.airOptions.hasOwnProperty('datepicker')){
+          this.airOptions['datepicker'] =true;
+        }
         this.airLanguage = LANGUAGES.get(this.airOptions.language);
         this.airCalendar = new AirCalendar(this.airDate);
     }
