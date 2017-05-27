@@ -1,6 +1,6 @@
 <div class="datepicker-inline">
     <div class="datepicker"><i class="datepicker--pointer"></i>
-        <nav class="datepicker--nav">
+        <nav class="datepicker--nav" *ngIf="airOptions.datepicker">
             <div class="datepicker--nav-action" (click)="airCalendar.previous()">
                 <svg>
                     <path d="M 17,12 l -5,5 l 5,5"></path>
@@ -16,7 +16,7 @@
             </div>
         </nav>
 
-        <div class="datepicker--content">
+        <div class="datepicker--content" *ngIf="airOptions.datepicker">
             <div class="datepicker--days datepicker--body active">
                 <div class="datepicker--days-names">
                     <div *ngFor="let day of [0,1,2,3,4,5,6]" class="datepicker--day-name" [class.-weekend-]="day == 5 || day == 6">{{airLanguage[airOptions.fullDays ? 'days' : 'daysMin'][day]}}</div>

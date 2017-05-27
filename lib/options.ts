@@ -5,6 +5,7 @@ export class AirOptions {
     language: string;
     hourStep: number;
     minuteStep: number;
+    datepicker:boolean;
 
     constructor () {
         this.timepicker = false;
@@ -13,5 +14,6 @@ export class AirOptions {
         this.language = 'en';
         this.hourStep = 1;
         this.minuteStep = 1;
+        this.datepicker = true;
     }
 }
