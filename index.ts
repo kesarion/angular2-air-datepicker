@@ -22,6 +22,9 @@ export class AirDatepicker implements OnInit {
         if (!this.airOptions) {
             this.airOptions = new AirOptions;
         }
+        if(!this.airOptions.hasOwnProperty('datepicker')){
+          this.airOptions['datepicker'] =true;
+        }
         this.airLanguage = LANGUAGES.get(this.airOptions.language);
         this.airCalendar = new AirCalendar(this.airDate);
     }
@@ -34,5 +37,19 @@ export class AirDatepicker implements OnInit {
         this.airDate.setTime(Date.parse(`${this.airCalendar.year}/${this.airCalendar.month + 1}/${this.airCalendar.date} ${this.airCalendar.hour}:${this.airCalendar.minute}`));
 
         this.airChange.emit(this.airDate);
+    }
+
+    setTodaysDate(){
+      this.airCalendar.today();
+      this.airDate.setTime(Date.parse(`${this.airCalendar.year}/${this.airCalendar.month + 1}/${this.airCalendar.date} ${this.airCalendar.hour}:${this.airCalendar.minute}`));
+
+      this.airChange.emit(this.airDate);
+    }
+    setTomorrowsDate(){
+      this.airCalendar.tomorrow();
+      this.airDate.setTime(Date.parse(`${this.airCalendar.year}/${this.airCalendar.month + 1}/${this.airCalendar.date} ${this.airCalendar.hour}:${this.airCalendar.minute}`));
+
+      this.airChange.emit(this.airDate);
+
     }
 }
