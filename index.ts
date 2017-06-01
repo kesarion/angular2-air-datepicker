@@ -40,13 +40,15 @@ export class AirDatepicker implements OnInit {
     }
 
     setTodaysDate(){
-      this.airDate = new Date()
+      this.airCalendar.today();
+      this.airDate.setTime(Date.parse(`${this.airCalendar.year}/${this.airCalendar.month + 1}/${this.airCalendar.date} ${this.airCalendar.hour}:${this.airCalendar.minute}`));
+
       this.airChange.emit(this.airDate);
     }
     setTomorrowsDate(){
-      var d = new Date()
-      d.setDate(d.getDate() + 1);
-      this.airDate = d;
+      this.airCalendar.tomorrow();
+      this.airDate.setTime(Date.parse(`${this.airCalendar.year}/${this.airCalendar.month + 1}/${this.airCalendar.date} ${this.airCalendar.hour}:${this.airCalendar.minute}`));
+
       this.airChange.emit(this.airDate);
 
     }

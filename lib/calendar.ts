@@ -27,6 +27,26 @@ export class AirCalendar {
         this.updateCalendar();
     }
 
+    today(){
+      let today = new Date()
+      this.year = today.getFullYear();
+      this.month = today.getMonth();
+      this.date = today.getDate();
+      this.hour = today.getHours();
+      this.minute = today.getMinutes();
+      this.updateCalendar();
+    }
+    tomorrow(){
+      let today = new Date()
+      this.year = today.getFullYear();
+      this.month = today.getMonth();
+      this.date = today.getDate();
+      this.hour = today.getHours();
+      this.minute = today.getMinutes();
+      this.date = this.date +1
+      this.updateCalendar();
+    }
+
     updateCalendar () {
         this.airDays = [];
         let daysInMonth = this.getDaysInMonth(this.month);
