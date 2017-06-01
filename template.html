@@ -47,5 +47,13 @@
                 </div>
             </div>
         </div>
+        <nav class="datepicker--nav" *ngIf="airOptions.datepicker">
+            <div class="datepicker--nav-action" (click)="airCalendar.previous()">
+                Today
+            </div>
+            <div class="datepicker--nav-action" (click)="airCalendar.next()">
+                Tomorrow
+            </div>
+        </nav>
     </div>
 </div>

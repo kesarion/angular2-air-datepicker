@@ -38,4 +38,16 @@ export class AirDatepicker implements OnInit {
 
         this.airChange.emit(this.airDate);
     }
+
+    setTodaysDate(){
+      this.airDate = new Date()
+      this.airChange.emit(this.airDate);
+    }
+    setTomorrowsDate(){
+      var d = new Date()
+      d.setDate(d.getDate() + 1);
+      this.airDate = d;
+      this.airChange.emit(this.airDate);
+
+    }
 }
