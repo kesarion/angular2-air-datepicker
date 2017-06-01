@@ -47,13 +47,13 @@
                 </div>
             </div>
         </div>
-        <nav class="datepicker--nav" *ngIf="airOptions.datepicker">
-            <div class="datepicker--nav-action" (click)="setTodaysDate()">
+        <nav class="datepicker--nav" *ngIf="airOptions.datepicker" style="display: flex;align-items: center;justify-content: center;">
+            <div class="datepicker--nav-action todayButton" (click)="setTodaysDate()">
                 Today
             </div>
-            <div class="datepicker--nav-action" (click)="setTomorrowsDate()">
+            <!-- <div class="datepicker--nav-action" (click)="setTomorrowsDate()">
                 Tomorrow
-            </div>
+            </div> -->
         </nav>
     </div>
 </div>
