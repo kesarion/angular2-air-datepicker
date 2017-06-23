@@ -19,9 +19,7 @@ export class AirDatepicker implements OnInit {
     airCalendar: AirCalendar;
 
     ngOnInit () {
-        if (!this.airOptions) {
-            this.airOptions = new AirOptions;
-        }
+        this.airOptions = Object.assign(new AirOptions, this.airOptions || {});
         this.airLanguage = LANGUAGES.get(this.airOptions.language);
         this.airCalendar = new AirCalendar(this.airDate);
     }
