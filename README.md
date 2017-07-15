@@ -81,31 +81,21 @@ export class HomeModule {}
 >
 > Display the time picker (hour & minute).
 
-----
-
 > * **format12h**: boolean = 'false';
 >
 > For timepicker, use 12 hour format.
-
----
 
 > * **language**: string = 'en';
 >
 > Choose a language for localization (day and month names).
 
----
-
 > * **hourStep**: number = 1;
 >
 > Number of hours the hour slider will jump at a time when moved.
 
----
-
 > * **minuteStep**: number = 1;
 >
 > Number of minutes the minute slider will jump at a time when moved.
-
----
 
 > * **enabledDateRanges**: DateRange[];
 >
