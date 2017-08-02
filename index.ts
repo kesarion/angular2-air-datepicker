@@ -32,7 +32,7 @@ export class AirDatepicker implements OnInit {
     }
 
     setTime () {
-      this.airDate.setTime(+ Date.UTC(this.airCalendar.year, this.airCalendar.month + 1, this.airCalendar.date, this.airCalendar.hour, this.airCalendar.minute));
+      this.airDate.setTime(+ Date.UTC(this.airCalendar.year, this.airCalendar.month, this.airCalendar.date, this.airCalendar.hour, this.airCalendar.minute));
       this.airChange.emit(this.airDate);
     }
 }
