@@ -9,6 +9,11 @@
 
 * **options: { enabledDateRanges: [] }**: With the new `enabledDateRanges` option, you can specify which dates are selectable; this acts as both a minDate/maxDate option as well as a selective date enabler/disabler, bringing together multiple features in a simple, versatile option;
 
+## 0.2.2 (2017-08-02)
+
+### Bug Fixes
+
+* **month**: Fixed month offset with Date.UTC
 
 # 0.1.0 (2016-11-10)
 
