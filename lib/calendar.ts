@@ -40,7 +40,7 @@ export class AirCalendar {
         if (firstDayOfMonth/* is not monday (0) */) {
             let daysInLastMonth = this.getDaysInMonth(this.month - 1);
             let airMonth = new AirMonth(this.month - 1, this.year);
-            for (let date = daysInLastMonth - firstDayOfMonth; date < daysInLastMonth; date++) {
+            for (let date = daysInLastMonth - firstDayOfMonth + 1; date <= daysInLastMonth; date++) {
                 this.airDays.push(new AirDay(date, weekend.progress(), this.airOptions.isDisabled(new Date(`${airMonth.year}/${airMonth.month + 1}/${date}`)), true));
             }
         }
