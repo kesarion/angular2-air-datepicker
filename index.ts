@@ -19,20 +19,20 @@ export class AirDatepicker implements OnInit {
     airCalendar: AirCalendar;
 
     ngOnInit () {
-        if (!this.airOptions) {
-            this.airOptions = new AirOptions;
-        }
+        this.airOptions = new AirOptions(this.airOptions || {} as AirOptions);
         this.airLanguage = LANGUAGES.get(this.airOptions.language);
-        this.airCalendar = new AirCalendar(this.airDate);
+        this.airCalendar = new AirCalendar(this.airDate, this.airOptions);
     }
 
     setDate (index?: number) {
-        if (this.airCalendar.airDays[index]) {
+        if (this.airCalendar.airDays[index] && !this.airCalendar.airDays[index].disabled) {
             this.airCalendar.selectDate(index);
+            this.setTime();
         }
+    }
 
-        this.airDate.setTime(Date.parse(`${this.airCalendar.year}/${this.airCalendar.month + 1}/${this.airCalendar.date} ${this.airCalendar.hour}:${this.airCalendar.minute}`));
-
-        this.airChange.emit(this.airDate);
+    setTime () {
+      this.airDate.setTime(+ Date.UTC(this.airCalendar.year, this.airCalendar.month, this.airCalendar.date, this.airCalendar.hour, this.airCalendar.minute));
+      this.airChange.emit(this.airDate);
     }
 }

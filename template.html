@@ -23,8 +23,20 @@
                 </div>
 
                 <div class="datepicker--cells datepicker--cells-days">
-                    <div *ngFor="let airDay of airCalendar.airDays; let index=index" class="datepicker--cell datepicker--cell-day" [ngClass]="{ '-weekend-': airDay.weekend, '-other-month-': airDay.other, '-current-': airDay.current, '-selected-': airDay.selected }"
-                          (click)="setDate(index)">{{airDay.date}}</div>
+                    <div *ngFor="let airDay of airCalendar.airDays; let index=index"
+                         class="datepicker--cell datepicker--cell-day"
+                         [ngClass]="{
+                            '-weekend-': airDay.weekend,
+                            '-other-month-': airDay.other,
+                            '-current-': airDay.current,
+                            '-selected-': airDay.selected,
+                            '-disabled-': airDay.disabled,
+                            '-focus-': airDay.focused }"
+                         (click)="setDate(index)"
+                         (mouseover)="airDay.focused = true"
+                         (mouseout)="airDay.focused = false">
+                      {{airDay.date}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,11 +51,11 @@
 
             <div class="datepicker--time-sliders">
                 <div class="datepicker--time-row">
-                    <input type="range" name="hours" min="0" max="23" step="{{airOptions.hourStep}}" [(ngModel)]="airCalendar.hour" (change)="setDate()">
+                    <input type="range" name="hours" min="0" max="23" step="{{airOptions.hourStep}}" [(ngModel)]="airCalendar.hour" (change)="setTime()">
                 </div>
 
                 <div class="datepicker--time-row">
-                    <input type="range" name="minutes" min="0" max="59" step="{{airOptions.minuteStep}}" [(ngModel)]="airCalendar.minute" (change)="setDate()">
+                    <input type="range" name="minutes" min="0" max="59" step="{{airOptions.minuteStep}}" [(ngModel)]="airCalendar.minute" (change)="setTime()">
                 </div>
             </div>
         </div>

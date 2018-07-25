@@ -77,18 +77,43 @@ export class HomeModule {}
 
 ### Options
 
-- **timepicker**: boolean = 'false';
- > Display the time picker (hour & minute);
+> * **timepicker**: boolean = 'false';
+>
+> Display the time picker (hour & minute).
 
-- **format12h**: boolean = 'false';
-> For timepicker, use 12 hour format;
+> * **format12h**: boolean = 'false';
+>
+> For timepicker, use 12 hour format.
 
-- **language**: string = 'en';
-> Choose a language for localization (day and month names);
+> * **language**: string = 'en';
+>
+> Choose a language for localization (day and month names).
 
-- **hourStep**: number = 1;
+> * **hourStep**: number = 1;
+>
+> Number of hours the hour slider will jump at a time when moved.
 
-- **minuteStep**: number = 1;
+> * **minuteStep**: number = 1;
+>
+> Number of minutes the minute slider will jump at a time when moved.
+
+> * **enabledDateRanges**: DateRange[];
+>
+> An array of date ranges (objects with `start` and `end` Date properties), that defines which dates are selectable. This works as both a minDate/maxDate option as well as a selective date enabler/disabler.
+> `timepicker`: This option only affects the datepicker, users can select any time if the timepicker is enabled.
+```javascript
+// Example:
+const now = Date.now();
+const days = 24 * 60 * 60 * 1000;
+
+const options = {
+	enabledDateRanges: [
+		{ start: new Date(now - 3 * days), end: new Date(now + 2 * days) },
+		{ start: new Date(now + 4 * days), end: new Date(now + 7 * days) }
+	]
+};
+```
+> **Hint**: If you only need a minDate, just set one DateRange with the `end` at a very distant date.
 
 
 ## Notes
@@ -107,16 +132,8 @@ There are a few differences from the original and many features are not yet impl
 - **input + tooltip version**; currently it's just the simple, div based datepicker;
 - **month & year picking**;
 - **multiple dates/ranges**;
-- **limits**; a more advanced version than in the original is planned;
 
 Those would be the main features that need to be implemented further. There are many more features in the original, some of them don't apply here, others will be implemented based on interest or from pull requests.
-
-#### JS Bundle
-
-There is no compiled bundle; this component is meant to be loaded and compiled along with other dependencies during the build process (using webpack, rollup or similar). In case of a test project without a build process, you can simply copy the component files and use them as any other custom component.
-
-If a good enough case can be made for creating a bundle, please create an issue for it.
-
 
 ## Thanks
 
