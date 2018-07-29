@@ -1,11 +1,11 @@
 export class AirOptions {
-    timepicker: boolean;
-    format12h: boolean;
-    fullDays: boolean;
-    language: string;
-    hourStep: number;
-    minuteStep: number;
-    enabledDateRanges: DateRange[];
+    timepicker?: boolean;
+    format12h?: boolean;
+    fullDays?: boolean;
+    language?: string;
+    hourStep?: number;
+    minuteStep?: number;
+    enabledDateRanges?: DateRange[];
 
     constructor (options: AirOptions = {} as AirOptions) {
         this.timepicker = !!options.timepicker;
@@ -18,7 +18,7 @@ export class AirOptions {
     }
 
     isDisabled (date: Date) {
-      for (let dateRange of this.enabledDateRanges) {
+      for (const dateRange of this.enabledDateRanges) {
         // console.log(date, dateRange, date >= dateRange.start, date <= dateRange.end, date >= dateRange.start && date <= dateRange.end);
         if (date >= dateRange.start && date <= dateRange.end) {
           return false;
@@ -29,7 +29,7 @@ export class AirOptions {
     }
 }
 
-interface DateRange {
+export interface DateRange {
   start: Date;
   end: Date;
 }

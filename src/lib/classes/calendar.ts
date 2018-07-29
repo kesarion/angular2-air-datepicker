@@ -108,7 +108,7 @@ export class AirCalendar {
 }
 
 // normalizes month/year
-class AirMonth {
+export class AirMonth {
     month: number;
     year: number;
 
@@ -126,7 +126,7 @@ class AirMonth {
     }
 }
 
-class AirDay {
+export class AirDay {
     date: number;
     weekend: boolean;
     other: boolean;
@@ -144,7 +144,7 @@ class AirDay {
     }
 }
 
-class AirWeekend {
+export class AirWeekend {
     day: number;
 
     constructor (day: number = 0) {

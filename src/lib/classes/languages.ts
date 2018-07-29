@@ -10,7 +10,7 @@ export class AirLanguage {
     }
 }
 
-export const LANGUAGES: Map<string, AirLanguage> = new Map([
+export const AIR_LANGUAGES: Map<string, AirLanguage> = new Map([
     ['cs', new AirLanguage(
         [ 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota', 'Neděle' ],
         [ 'Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne' ],
