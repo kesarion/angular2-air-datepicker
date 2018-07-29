@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/angular2-air-datepicker.svg)](https://badge.fury.io/js/angular2-air-datepicker)
 
 # Angular2 Air Datepicker  
   
