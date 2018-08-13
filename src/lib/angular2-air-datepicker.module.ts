@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Angular2AirDatepickerComponent } from './angular2-air-datepicker.component';
+import { components } from './components/index';
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import { Angular2AirDatepickerComponent } from './angular2-air-datepicker.compon
     FormsModule
   ],
   declarations: [
-    Angular2AirDatepickerComponent
+    Angular2AirDatepickerComponent,
+    components
   ],
   exports: [
     Angular2AirDatepickerComponent

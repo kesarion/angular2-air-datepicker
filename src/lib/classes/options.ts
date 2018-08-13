@@ -14,18 +14,39 @@ export class AirOptions {
         this.language = options.language || 'en';
         this.hourStep = options.hourStep || 1;
         this.minuteStep = options.minuteStep || 1;
-        this.enabledDateRanges = options.enabledDateRanges || [];
+        this.enabledDateRanges = this.UTCRanges(options.enabledDateRanges || []);
     }
 
     isDisabled (date: Date) {
       for (const dateRange of this.enabledDateRanges) {
-        // console.log(date, dateRange, date >= dateRange.start, date <= dateRange.end, date >= dateRange.start && date <= dateRange.end);
         if (date >= dateRange.start && date <= dateRange.end) {
           return false;
         }
       }
 
       return !!this.enabledDateRanges.length;
+    }
+
+    UTCRanges (dateRanges: DateRange[]) {
+      for (const dateRange of dateRanges) {
+        dateRange.start.setTime(Date.UTC(
+          dateRange.start.getFullYear(),
+          dateRange.start.getMonth(),
+          dateRange.start.getDate(),
+          dateRange.start.getHours(),
+          dateRange.start.getMinutes()
+        ));
+
+        dateRange.end.setTime(Date.UTC(
+          dateRange.end.getFullYear(),
+          dateRange.end.getMonth(),
+          dateRange.end.getDate(),
+          dateRange.end.getHours(),
+          dateRange.end.getMinutes()
+        ));
+      }
+
+      return dateRanges;
     }
 }
 

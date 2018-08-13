@@ -138,8 +138,7 @@ There are a few differences from the original and many features are not yet impl
 #### To be implemented:  
   
 - **input + tooltip version**; (currently there's only the div based datepicker) 
-- **month & year picking**;  
-- **multiple date selection**;  
+- **multiple date selection**;
   
 Those would be the main features that need to be implemented further. There are many more features in the original, some of them don't apply here, others will be implemented based on interest or from pull requests.  
   

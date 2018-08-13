@@ -4,14 +4,9 @@
         "directive-selector": [
             true,
             "attribute",
-            "airdate",
+            "",
             "camelCase"
         ],
-        "component-selector": [
-            true,
-            "element",
-            "",
-            "kebab-case"
-        ]
+      "triple-equals": false
     }
 }

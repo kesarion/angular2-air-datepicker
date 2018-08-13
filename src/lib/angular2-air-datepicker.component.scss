@@ -45,6 +45,9 @@
   justify-content: center;
   height: 32px;
   z-index: 1; }
+.datepicker--cell:hover {
+  background: #f0f0f0;
+}
 .datepicker--cell.-focus- {
   background: #f0f0f0; }
 .datepicker--cell.-current- {

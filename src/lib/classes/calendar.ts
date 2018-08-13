@@ -1,169 +1,156 @@
 import { AirOptions } from './options';
 
 export class AirCalendar {
-    daysInMonth: Array<number> = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-    airOptions: AirOptions;
-    airDays: Array<AirDay>;
-    year: number;
-    month: number;
-    date: number;
-    hour: number;
-    minute: number;
+  daysInMonth: Array<number> = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+  airOptions: AirOptions;
+  airDays: Array<AirDay>;
+  currentMonth: number;
+  currentYear: number;
+  year: number;
+  month: number;
+  date: number;
+  hour: number;
+  minute: number;
 
-    constructor (date: Date = new Date, airOptions: AirOptions = new AirOptions) {
-        this.airOptions = airOptions;
-        this.year = date.getFullYear();
-        this.month = date.getMonth();
-        this.date = date.getDate();
-        this.hour = date.getHours();
-        this.minute = date.getMinutes();
-        this.updateCalendar(true)
+  constructor (date: Date = new Date, airOptions: AirOptions = new AirOptions) {
+    const currentDate = new Date;
+    this.currentMonth = currentDate.getUTCMonth();
+    this.currentYear = currentDate.getUTCFullYear();
+    this.airOptions = airOptions;
+    this.year = date.getUTCFullYear();
+    this.month = date.getUTCMonth();
+    this.date = date.getUTCDate();
+    this.hour = date.getHours();
+    this.minute = date.getMinutes();
+    this.updateCalendar();
+  }
+
+  updateCalendar () {
+    this.airDays = [];
+    const daysInMonth = this.getDaysInMonth(this.month);
+    const date = new Date;
+    const firstDayOfMonth = ((new Date(Date.UTC(this.year, this.month, 1))).getDay() || 7) - 1; // making 0 == monday
+    const weekend = new AirWeekend(firstDayOfMonth);
+
+    if (firstDayOfMonth/* is not monday (0) */) {
+      const daysInLastMonth = this.getDaysInMonth(this.month - 1);
+      const prevAirMonth = new AirMonth(this.month - 1, this.year);
+      for (let dateNo = daysInLastMonth - firstDayOfMonth; dateNo < daysInLastMonth; dateNo++) {
+        this.airDays.push(
+          new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(Date.UTC(prevAirMonth.year, prevAirMonth.month, dateNo))), true)
+        );
+      }
     }
 
-    next () {
-        this.setMonth(this.month + 1);
-        this.updateCalendar();
+    for (let dateNo = 1; dateNo <= daysInMonth; dateNo++) {
+      this.airDays.push(new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(Date.UTC(this.year, this.month, dateNo)))));
     }
 
-    previous () {
-        this.setMonth(this.month - 1);
-        this.updateCalendar();
+    if (this.date > daysInMonth) {
+      this.date = daysInMonth; // select the maximum available this month instead
     }
 
-    updateCalendar (selectDate = false) {
-        this.airDays = [];
-        let daysInMonth = this.getDaysInMonth(this.month);
-        let date = new Date;
-        let firstDayOfMonth = ((new Date(Date.parse(`${this.year}/${this.month + 1}/1`))).getDay() || 7) - 1; // making 0 == monday
-        let weekend = new AirWeekend(firstDayOfMonth);
-
-        if (firstDayOfMonth/* is not monday (0) */) {
-            let daysInLastMonth = this.getDaysInMonth(this.month - 1);
-            let airMonth = new AirMonth(this.month - 1, this.year);
-            for (let date = daysInLastMonth - firstDayOfMonth; date < daysInLastMonth; date++) {
-                this.airDays.push(new AirDay(date, weekend.progress(), this.airOptions.isDisabled(new Date(`${airMonth.year}/${airMonth.month + 1}/${date}`)), true));
-            }
-        }
-
-        for (let date = 1; date <= daysInMonth; date++) {
-            this.airDays.push(new AirDay(date, weekend.progress(), this.airOptions.isDisabled(new Date(`${this.year}/${this.month + 1}/${date}`))));
-        }
-
-        if (this.date > daysInMonth) {
-            this.date = daysInMonth; // select the maximum available this month instead
-        }
-
-        // select the calendar date; usually at calendar initialisation; only if enabled
-        if (selectDate) {
-          let selectedDate = firstDayOfMonth + this.date - 1;
-          this.airDays[selectedDate].selected = !this.airDays[selectedDate].disabled;
-        }
-
-        if (date.getMonth() == this.month) {
-            // set the current date if it's the current month, regardless of year for now
-            this.airDays[firstDayOfMonth + date.getDate() - 1].current = true;
-        }
-
-        let daysSoFar = firstDayOfMonth + daysInMonth;
-        let airMonth = new AirMonth(this.month + 1, this.year);
-        for (let date = 1; date <= (daysSoFar > 35 ? 42 : 35) - daysSoFar; date++) {
-            this.airDays.push(new AirDay(date, weekend.progress(), this.airOptions.isDisabled(new Date(`${airMonth.year}/${airMonth.month + 1}/${date}`)), true));
-        }
+    // set the current date if it's the current month & year
+    if (date.getUTCMonth() == this.month && date.getUTCFullYear() == this.year) {
+      this.airDays[firstDayOfMonth + date.getUTCDate() - 1].current = true;
     }
 
-    selectDate (index: number) {
-        this.date = this.airDays[index].date;
+    const daysSoFar = firstDayOfMonth + daysInMonth;
+    const nextAirMonth = new AirMonth(this.month + 1, this.year);
+    for (let dateNo = 1; dateNo <= (daysSoFar > 35 ? 42 : 35) - daysSoFar; dateNo++) {
+      this.airDays.push(
+        new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(Date.UTC(nextAirMonth.year, nextAirMonth.month, dateNo))), true)
+      );
+    }
+  }
 
-        // might be a day from the previous/next month
-        if (index < 7 && this.date > 20) {
-            this.previous();
-        } else if (index > 20 && this.date < 8) {
-            this.next();
-        } else {
-            // no need to update the whole calendar here
-            for (let day of this.airDays) {
-                if (day.selected) {
-                    day.selected = false;
-                }
-            }
+  selectDate (index: number) {
+    this.date = this.airDays[index].date;
 
-            this.airDays[index].selected = true;
-        }
+    // might be a day from the previous/next month
+    if (index < 7 && this.date > 20) {
+      this.setMonth(this.month - 1);
+    } else if (index > 20 && this.date < 8) {
+      this.setMonth(this.month + 1);
+    }
+  }
+
+  setMonth (month: number) {
+    const airMonth: AirMonth = new AirMonth(month, this.year);
+    this.month = airMonth.month;
+    this.year = airMonth.year;
+    this.updateCalendar();
+  }
+
+  setYear (year: number) {
+    this.year = year;
+  }
+
+  getDaysInMonth (month: number) {
+    const airMonth: AirMonth = new AirMonth(month, this.year);
+    if (airMonth.month == 1 && ((airMonth.year % 4 == 0) && (airMonth.year % 100 != 0)) || (airMonth.year % 400 == 0)) {
+      return 29;
     }
 
-    setMonth (month) {
-        let airMonth: AirMonth = new AirMonth(month, this.year);
-        this.month = airMonth.month;
-        this.year = airMonth.year;
-    }
-
-    getDaysInMonth (month) {
-        let airMonth: AirMonth = new AirMonth(month, this.year);
-        if(airMonth.month == 1 && ((airMonth.year % 4 == 0) && (airMonth.year % 100 != 0)) || (airMonth.year % 400 == 0)) {
-            return 29;
-        }
-
-        return this.daysInMonth[airMonth.month];
-    }
+    return this.daysInMonth[airMonth.month];
+  }
 }
 
 // normalizes month/year
 export class AirMonth {
-    month: number;
-    year: number;
+  month: number;
+  year: number;
 
-    constructor (month, year) {
-        if (month > 11) {
-            year++;
-            month = 0;
-        } else if (month < 0) {
-            year--;
-            month = 11;
-        }
-
-        this.month = month;
-        this.year = year;
+  constructor (month, year) {
+    if (month > 11) {
+      year++;
+      month = 0;
+    } else if (month < 0) {
+      year--;
+      month = 11;
     }
+
+    this.month = month;
+    this.year = year;
+  }
 }
 
 export class AirDay {
-    date: number;
-    weekend: boolean;
-    other: boolean;
-    current: boolean;
-    selected: boolean;
-    disabled: boolean
+  date: number;
+  weekend: boolean;
+  other: boolean;
+  current: boolean;
+  disabled: boolean;
 
-    constructor (date: number, weekend = false, disabled = false, other = false, current = false, selected = false) {
-        this.date = date;
-        this.weekend = weekend;
-        this.disabled = disabled;
-        this.other = other;
-        this.current = current;
-        this.selected = selected;
-    }
+  constructor (date: number, weekend = false, disabled = false, other = false, current = false) {
+    this.date = date;
+    this.weekend = weekend;
+    this.disabled = disabled;
+    this.other = other;
+    this.current = current;
+  }
 }
 
 export class AirWeekend {
-    day: number;
+  day: number;
 
-    constructor (day: number = 0) {
-        this.day = day;
+  constructor (day: number = 0) {
+    this.day = day;
+  }
+
+  progress (): boolean {
+    let weekend = false;
+
+    if (this.day == 5 /* Saturday */) {
+      weekend = true;
+      ++this.day;
+    } else if (this.day == 6 /* Sunday */) {
+      weekend = true;
+      this.day = 0; // it's a new week!
+    } else {
+      ++this.day;
     }
 
-    progress (): boolean {
-        let weekend = false;
-
-        if (this.day == 5 /* Saturday */) {
-            weekend = true;
-            ++this.day;
-        } else if (this.day == 6 /* Sunday */) {
-            weekend = true;
-            this.day = 0; // it's a new week!
-        } else {
-            ++this.day;
-        }
-
-        return weekend;
-    }
+    return weekend;
+  }
 }
