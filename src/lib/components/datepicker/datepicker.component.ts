@@ -28,9 +28,9 @@ import { AirCalendar, AirLanguage, AirOptions } from '../../classes';
                             '-other-month-': airDay.other,
                             '-current-': airDay.current,
                             '-selected-':
-                            airDate.getUTCFullYear() == airCalendar.year
-                            && airDate.getUTCMonth() == airCalendar.month
-                            && airDate.getUTCDate() == airDay.date
+                            airDate.getFullYear() == airCalendar.year
+                            && airDate.getMonth() == airCalendar.month
+                            && airDate.getDate() == airDay.date
                             && !airDay.other,
                             '-disabled-': airDay.disabled }"
                (click)="setDate.emit(i)">

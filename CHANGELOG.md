@@ -17,9 +17,10 @@ This version brings significant changes to the code and project structure.
 ## 1.1.3 (2018-08-21)
 
 ### Bug Fixes    
-    
+
 * **year navigation**: Next and previous year buttons should now work.
-  
+* **weekday mapping**: Days should now be mapped to their weekdays correctly.
+
 # 0.2.0 (2017-07-14)    
     
 ### Bug Fixes    

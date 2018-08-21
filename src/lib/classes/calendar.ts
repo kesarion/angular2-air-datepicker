@@ -14,12 +14,12 @@ export class AirCalendar {
 
   constructor (date: Date = new Date, airOptions: AirOptions = new AirOptions) {
     const currentDate = new Date;
-    this.currentMonth = currentDate.getUTCMonth();
-    this.currentYear = currentDate.getUTCFullYear();
+    this.currentMonth = currentDate.getMonth();
+    this.currentYear = currentDate.getFullYear();
     this.airOptions = airOptions;
-    this.year = date.getUTCFullYear();
-    this.month = date.getUTCMonth();
-    this.date = date.getUTCDate();
+    this.year = date.getFullYear();
+    this.month = date.getMonth();
+    this.date = date.getDate();
     this.hour = date.getHours();
     this.minute = date.getMinutes();
     this.updateCalendar();
@@ -29,7 +29,7 @@ export class AirCalendar {
     this.airDays = [];
     const daysInMonth = this.getDaysInMonth(this.month);
     const date = new Date;
-    const firstDayOfMonth = ((new Date(Date.UTC(this.year, this.month, 1))).getDay() || 7) - 1; // making 0 == monday
+    const firstDayOfMonth = ((new Date(this.year, this.month, 1)).getDay() || 7) - 1; // making 0 == monday
     const weekend = new AirWeekend(firstDayOfMonth);
 
     if (firstDayOfMonth/* is not monday (0) */) {
@@ -37,13 +37,13 @@ export class AirCalendar {
       const prevAirMonth = new AirMonth(this.month - 1, this.year);
       for (let dateNo = daysInLastMonth - firstDayOfMonth; dateNo < daysInLastMonth; dateNo++) {
         this.airDays.push(
-          new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(Date.UTC(prevAirMonth.year, prevAirMonth.month, dateNo))), true)
+          new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(prevAirMonth.year, prevAirMonth.month, dateNo)), true)
         );
       }
     }
 
     for (let dateNo = 1; dateNo <= daysInMonth; dateNo++) {
-      this.airDays.push(new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(Date.UTC(this.year, this.month, dateNo)))));
+      this.airDays.push(new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(this.year, this.month, dateNo))));
     }
 
     if (this.date > daysInMonth) {
@@ -51,15 +51,15 @@ export class AirCalendar {
     }
 
     // set the current date if it's the current month & year
-    if (date.getUTCMonth() == this.month && date.getUTCFullYear() == this.year) {
-      this.airDays[firstDayOfMonth + date.getUTCDate() - 1].current = true;
+    if (date.getMonth() == this.month && date.getFullYear() == this.year) {
+      this.airDays[firstDayOfMonth + date.getDate() - 1].current = true;
     }
 
     const daysSoFar = firstDayOfMonth + daysInMonth;
     const nextAirMonth = new AirMonth(this.month + 1, this.year);
     for (let dateNo = 1; dateNo <= (daysSoFar > 35 ? 42 : 35) - daysSoFar; dateNo++) {
       this.airDays.push(
-        new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(Date.UTC(nextAirMonth.year, nextAirMonth.month, dateNo))), true)
+        new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(nextAirMonth.year, nextAirMonth.month, dateNo)), true)
       );
     }
   }

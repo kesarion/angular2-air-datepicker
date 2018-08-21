@@ -14,7 +14,7 @@ export class AirOptions {
         this.language = options.language || 'en';
         this.hourStep = options.hourStep || 1;
         this.minuteStep = options.minuteStep || 1;
-        this.enabledDateRanges = this.UTCRanges(options.enabledDateRanges || []);
+        this.enabledDateRanges = options.enabledDateRanges || [];
     }
 
     isDisabled (date: Date) {
@@ -25,28 +25,6 @@ export class AirOptions {
       }
 
       return !!this.enabledDateRanges.length;
-    }
-
-    UTCRanges (dateRanges: DateRange[]) {
-      for (const dateRange of dateRanges) {
-        dateRange.start.setTime(Date.UTC(
-          dateRange.start.getFullYear(),
-          dateRange.start.getMonth(),
-          dateRange.start.getDate(),
-          dateRange.start.getHours(),
-          dateRange.start.getMinutes()
-        ));
-
-        dateRange.end.setTime(Date.UTC(
-          dateRange.end.getFullYear(),
-          dateRange.end.getMonth(),
-          dateRange.end.getDate(),
-          dateRange.end.getHours(),
-          dateRange.end.getMinutes()
-        ));
-      }
-
-      return dateRanges;
     }
 }
 

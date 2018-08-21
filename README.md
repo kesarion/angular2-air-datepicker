@@ -117,7 +117,7 @@ const options = {
 };  
 ```  
 > **Hint**: If you only need a minDate, just set one DateRange with the `end` at a very distant date. 
-> **Note**: Users can select any time if the `timepicker` option is enabled, the enabled ranges only affect the selectable days.  
+> **Note**: The `timepicker` option is currently not supported; set start/end days at the start/end of the respective days you wish to set as limits for optimal results. If there's any problem related to timezones, please create and document an issue it.  
   
   
 ## Notes  
