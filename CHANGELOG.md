@@ -13,6 +13,12 @@ This version brings significant changes to the code and project structure.
 
 ### Features
 * **month & year selection**: The month and year can now be selected as in the original library.
+
+## 1.1.3 (2018-08-21)
+
+### Bug Fixes    
+    
+* **year navigation**: Next and previous year buttons should now work.
   
 # 0.2.0 (2017-07-14)    
     

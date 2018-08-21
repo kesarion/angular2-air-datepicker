@@ -23,6 +23,7 @@ import { AIR_LANGUAGES, AirCalendar, AirLanguage, AirOptions } from './classes';
              [airCalendar]="airCalendar"
              [airLanguage]="airLanguage"
              (setMonth)="airCalendar.setMonth($event); mode = 'datepicker';"
+             (setYear)="airCalendar.setYear($event)"
              (yearSelection)="mode = 'yearpicker'"
              class="datepicker"></div>
 
