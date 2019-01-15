@@ -8,7 +8,7 @@ import { AirCalendar } from '../../classes';
     <nav class="datepicker--nav">
       <div class="datepicker--nav-action" (click)="previous()"><svg><path d="M 17,12 l -5,5 l 5,5"></path></svg></div>
 
-      <div class="datepicker--nav-title">{{years[1]}} - {{years[years.length - 1]}}</div>
+      <div class="datepicker--nav-title">{{years[1]}} - {{years[years.length - 2]}}</div>
 
       <div class="datepicker--nav-action" (click)="next()"><svg><path d="M 14,12 l 5,5 l -5,5"></path></svg></div>
     </nav>
@@ -29,9 +29,8 @@ export class YearpickerComponent implements OnInit {
   years: number[] = [];
 
   ngOnInit () {
-    for (let i = this.airCalendar.year - 6; i < this.airCalendar.year + 6; i++) {
-      this.years.push(i);
-    }
+    const firstYear = this.airCalendar.year - 6;
+    this.years = Array.from({ length: 12 }, (v, k) => firstYear + k);
   }
 
   next () {

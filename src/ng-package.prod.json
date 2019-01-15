@@ -1,0 +1,7 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../dist/angular2-air-datepicker",
+  "lib": {
+    "entryFile": "public_api.ts"
+  }
+}

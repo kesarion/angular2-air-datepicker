@@ -1,0 +1,12 @@
+{
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            "attribute",
+            "",
+            "camelCase"
+        ],
+      "triple-equals": false
+    }
+}

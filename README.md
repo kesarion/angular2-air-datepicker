@@ -1,4 +1,6 @@
 [![npm version](https://badge.fury.io/js/angular2-air-datepicker.svg)](https://badge.fury.io/js/angular2-air-datepicker)
+[![Build Status](https://travis-ci.org/kesarion/angular2-air-datepicker.svg?branch=master)](https://travis-ci.org/kesarion/angular2-air-datepicker)
+[![codecov](https://codecov.io/gh/kesarion/angular2-air-datepicker/branch/master/graph/badge.svg)](https://codecov.io/gh/kesarion/angular2-air-datepicker)
 
 # Angular2 Air Datepicker  
   

@@ -56,11 +56,11 @@ export class Angular2AirDatepickerComponent implements OnInit {
 
   setDate (index?: number) {
     if (this.airCalendar.airDays[index]) {
-      if (!this.airCalendar.airDays[index].disabled) {
-        this.airCalendar.selectDate(index);
-      } else {
+      if (this.airCalendar.airDays[index].disabled) {
         return;
       }
+
+      this.airCalendar.selectDate(index);
     }
 
     const time = Date.UTC(this.airCalendar.year, this.airCalendar.month, this.airCalendar.date, this.airCalendar.hour, this.airCalendar.minute);

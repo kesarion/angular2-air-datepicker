@@ -1,18 +1,13 @@
+## 1.2.0 (2019-01-15)
 
-  
-# 1.0.0 (2018-07-29)   
-    
-### Changes    
-    
-* **Compatibility with Angular 6+**: The library has undergone a future proofing effort. It should now work with Angular 6 and up. If there's an issue with some version of Angular, please provide the exact versions for angular and the library's required peer dependencies (see the package.json).  
-* **Exporting a module**: Now exporting a module which in turn exports the component; the component name has also changed; the html tag remains the same. This is a `breaking change` and you should update your code accordingly. Also part of future proofing. 
+Fully tested; added to Travis for automatic test/build/deployment.
 
-## 1.1.0 (2018-08-13)
+Changed the project structure to allow testing and building; when developing, a new project may be generated to manually test and observe changes (note that currently, this library is the main project - in *src* - subject to change).
 
-This version brings significant changes to the code and project structure.
+### Bug Fixes    
 
-### Features
-* **month & year selection**: The month and year can now be selected as in the original library.
+* **date selection/timezone bug**: At the end/beginning of a certain day/month/year, upon selection of a date (day), the next/previous date would be highlighted for certain timezones.
+* **navigation**: Next/Previous navigation buttons should work correctly for all datepicker modes now.
 
 ## 1.1.3 (2018-08-21)
 
@@ -20,6 +15,20 @@ This version brings significant changes to the code and project structure.
 
 * **year navigation**: Next and previous year buttons should now work.
 * **weekday mapping**: Days should now be mapped to their weekdays correctly.
+
+## 1.1.0 (2018-08-13)
+
+This version brings significant changes to the code and project structure.
+
+### Features
+* **month & year selection**: The month and year can now be selected as in the original library.
+  
+# 1.0.0 (2018-07-29)   
+    
+### Changes    
+    
+* **Compatibility with Angular 6+**: The library has undergone a future proofing effort. It should now work with Angular 6 and up. If there's an issue with some version of Angular, please provide the exact versions for angular and the library's required peer dependencies (see the package.json).  
+* **Exporting a module**: Now exporting a module which in turn exports the component; the component name has also changed; the html tag remains the same. This is a `breaking change` and you should update your code accordingly. Also part of future proofing. 
 
 # 0.2.0 (2017-07-14)    
     

@@ -30,7 +30,7 @@ export class AirCalendar {
     const daysInMonth = this.getDaysInMonth(this.month);
     const date = new Date;
     const firstDayOfMonth = ((new Date(this.year, this.month, 1)).getDay() || 7) - 1; // making 0 == monday
-    const weekend = new AirWeekend(firstDayOfMonth);
+    const weekend = new AirWeekend;
 
     if (firstDayOfMonth/* is not monday (0) */) {
       const daysInLastMonth = this.getDaysInMonth(this.month - 1);

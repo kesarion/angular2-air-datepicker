@@ -6,11 +6,11 @@ import { AirCalendar, AirLanguage } from '../../classes';
   selector: '[monthpicker]',
   template: `
     <nav class="datepicker--nav">
-      <div class="datepicker--nav-action" (click)="setYear.emit(this.airCalendar.year - 1)"><svg><path d="M 17,12 l -5,5 l 5,5"></path></svg></div>
+      <div class="datepicker--nav-action" (click)="setYear.emit(airCalendar.year - 1)"><svg><path d="M 17,12 l -5,5 l 5,5"></path></svg></div>
 
       <div (click)="yearSelection.emit()" class="datepicker--nav-title">{{airCalendar.year}}</div>
 
-      <div class="datepicker--nav-action" (click)="setYear.emit(this.airCalendar.year + 1)"><svg><path d="M 14,12 l 5,5 l -5,5"></path></svg></div>
+      <div class="datepicker--nav-action" (click)="setYear.emit(airCalendar.year + 1)"><svg><path d="M 14,12 l 5,5 l -5,5"></path></svg></div>
     </nav>
 
     <div class="datepicker--content">

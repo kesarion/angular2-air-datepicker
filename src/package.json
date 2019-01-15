@@ -1,0 +1,12 @@
+{
+  "name": "angular2-air-datepicker",
+  "description": "Angular2 Datepicker | Native implementation of air-datepicker",
+  "version": "1.2.0",
+  "repository": "kesarion/angular2-air-datepicker",
+  "peerDependencies": {
+    "@angular/common": "*",
+    "@angular/core": "*",
+    "@angular/forms": "*"
+  },
+  "license": "MIT"
+}
