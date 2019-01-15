@@ -17,10 +17,10 @@ cache:
 
 install:
   - npm install
+  - npm install codecov -g
 
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - npm install codecov -g
 
 after_success:
   - codecov
