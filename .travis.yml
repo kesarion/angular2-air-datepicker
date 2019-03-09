@@ -20,7 +20,7 @@ install:
   - npm install codecov -g
 
 script:
-  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - npm run test angular2-air-datepicker -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
 after_success:
   - codecov
