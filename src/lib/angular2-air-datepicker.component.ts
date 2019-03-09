@@ -14,7 +14,7 @@ import { AIR_LANGUAGES, AirCalendar, AirLanguage, AirOptions } from './classes';
              [airCalendar]="airCalendar"
              [airLanguage]="airLanguage"
              (setDate)="setDate($event)"
-             (setMonth)="airCalendar.setMonth($event)"
+             (setMonth)="airCalendar.setMonth($event); airMonthSelect.emit($event);"
              (monthSelection)="mode = 'monthpicker'"
              class="datepicker"></div>
 
@@ -22,15 +22,15 @@ import { AIR_LANGUAGES, AirCalendar, AirLanguage, AirOptions } from './classes';
              monthpicker
              [airCalendar]="airCalendar"
              [airLanguage]="airLanguage"
-             (setMonth)="airCalendar.setMonth($event); mode = 'datepicker';"
-             (setYear)="airCalendar.setYear($event)"
+             (setMonth)="airCalendar.setMonth($event); airMonthSelect.emit($event); mode = 'datepicker';"
+             (setYear)="airCalendar.setYear($event); airYearSelect.emit($event);"
              (yearSelection)="mode = 'yearpicker'"
              class="datepicker"></div>
 
         <div *ngSwitchCase="'yearpicker'"
              yearpicker
              [airCalendar]="airCalendar"
-             (setYear)="airCalendar.setYear($event); mode = 'monthpicker';"
+             (setYear)="airCalendar.setYear($event); airYearSelect.emit($event); mode = 'monthpicker';"
              class="datepicker"></div>
       </ng-container>
     </div>
@@ -43,6 +43,8 @@ export class Angular2AirDatepickerComponent implements OnInit {
   @Input() airDate: Date;
 
   @Output() airChange = new EventEmitter<Date>();
+  @Output() airMonthSelect = new EventEmitter<number>();
+  @Output() airYearSelect = new EventEmitter<number>();
 
   airLanguage: AirLanguage;
   airCalendar: AirCalendar;
