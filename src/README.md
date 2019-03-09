@@ -123,12 +123,25 @@ const options = {
   
   
 ## Notes  
+
+#### Build and Development
+
+```text
+git clone https://github.com/kesarion/angular2-air-datepicker
+cd angular2-air-datepicker
+npm install -g @angular/cli
+npm install
+ng build
+ng serve angular2-air-datepicker-app
+```
+
+The library is the main project, you can build it with `ng build` and run the tests with `ng test` (requires chrome). The `angular2-air-datepicker-app` project is a test app you can use to test the library and any changes you might have made to it. You'll need to rebuild the library after any change or use `ng build --watch` in another terminal window or tab.
   
 #### Version 1.x:
  
- The library should now be compatible with Angular 6+. Starting with version 1.0 you should import the exported module instead of using the component directly.  
+The library should now be compatible with Angular 6+. Starting with version 1.0 you should import the exported module instead of using the component directly.  
   
-#### Differences from original:  
+#### Differences from the original:  
 
 There are a few differences from the original and many features are not yet implemented. Pull requests are humbly encouraged and accepted. If there is enough support for a feature it will likely be done quicker; please create an issue for any request.    
 

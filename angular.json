@@ -42,6 +42,105 @@
           }
         }
       }
+    },
+    "angular2-air-datepicker-app": {
+      "root": "projects/angular2-air-datepicker-app/",
+      "sourceRoot": "projects/angular2-air-datepicker-app/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/angular2-air-datepicker-app",
+            "index": "projects/angular2-air-datepicker-app/src/index.html",
+            "main": "projects/angular2-air-datepicker-app/src/main.ts",
+            "polyfills": "projects/angular2-air-datepicker-app/src/polyfills.ts",
+            "tsConfig": "projects/angular2-air-datepicker-app/tsconfig.app.json",
+            "assets": [
+              "projects/angular2-air-datepicker-app/src/favicon.ico",
+              "projects/angular2-air-datepicker-app/src/assets"
+            ],
+            "styles": [
+              "projects/angular2-air-datepicker-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/angular2-air-datepicker-app/src/environments/environment.ts",
+                  "with": "projects/angular2-air-datepicker-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "angular2-air-datepicker-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "angular2-air-datepicker-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "angular2-air-datepicker-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular2-air-datepicker-app/src/test.ts",
+            "polyfills": "projects/angular2-air-datepicker-app/src/polyfills.ts",
+            "tsConfig": "projects/angular2-air-datepicker-app/tsconfig.spec.json",
+            "karmaConfig": "projects/angular2-air-datepicker-app/karma.conf.js",
+            "styles": [
+              "projects/angular2-air-datepicker-app/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/angular2-air-datepicker-app/src/favicon.ico",
+              "projects/angular2-air-datepicker-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular2-air-datepicker-app/tsconfig.app.json",
+              "projects/angular2-air-datepicker-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular2-air-datepicker"
