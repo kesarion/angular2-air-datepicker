@@ -107,7 +107,7 @@ describe('DatepickerComponent', () => {
     it('should apply the current and weekend classes to the right datepicker cells', () => {
       const datepickerCells = delement.queryAll(By.css('.datepicker--cell'));
 
-      const dateIndex = datepickerCells.map(dateCell => dateCell.nativeElement.textContent).indexOf(`${component.airCalendar.date}`);
+      const dateIndex = datepickerCells.map(dateCell => dateCell.nativeElement.textContent)[component.airCalendar.date > 15 ? 'lastIndexOf' : 'indexOf'](`${component.airCalendar.date}`);
       expect(component.airCalendar.airDays[dateIndex].current).toBeTruthy();
       expect(datepickerCells[dateIndex].classes['-current-']).toBeTruthy();
 
