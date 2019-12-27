@@ -89,7 +89,7 @@ export class HomeModule {}
   
 > * **format12h**: boolean = 'false';  
 >  
-> For timepicker, use 12 hour format.  
+> For the timepicker, switch to a 12 hour format (AM/PM).  
   
 > * **language**: string = 'en';  
 >  
@@ -97,11 +97,11 @@ export class HomeModule {}
   
 > * **hourStep**: number = 1;  
 >  
-> Number of hours the hour slider will jump at a time when moved.  
+> The number of hours the hour slider will move at a time when dragged.  
   
 > * **minuteStep**: number = 1;  
 >  
-> Number of minutes the minute slider will jump at a time when moved.  
+> The number of minutes the minute slider will move at a time when dragged.  
   
 > * **enabledDateRanges**: DateRange[];  
 >  
@@ -118,9 +118,8 @@ const options = {
  ]  
 };  
 ```  
-> **Hint**: If you only need a minDate, just set one DateRange with the `end` at a very distant date. 
-> **Note**: The `timepicker` option is currently not supported; set start/end days at the start/end of the respective days you wish to set as limits for optimal results. If there's any problem related to timezones, please create and document an issue it.  
-  
+> **Note**: You'll usually want to set the `start` and `end` dates to the start and end of the day (00:00, 23:59), not doing so may result in unintended behaviors in non GMT timezones, unless you know what you're doing. The `timepicker` option is currently not supported.   
+> **Hint**: If you only need a minDate, just set one DateRange with the `end` set to a very distant date. 
   
 ## Notes  
 
@@ -139,23 +138,24 @@ The library is the main project, you can build it with `ng build` and run the te
   
 #### Version 1.x:
  
-The library should now be compatible with Angular 6+. Starting with version 1.0 you should import the exported module instead of using the component directly.  
+The library should now be compatible with Angular 6+. Starting with version 1.0, you should import the module instead of the component.  
   
 #### Differences from the original:  
 
 There are a few differences from the original and many features are not yet implemented. Pull requests are humbly encouraged and accepted. If there is enough support for a feature it will likely be done quicker; please create an issue for any request.    
 
 - A Date Object is used as input/output; The developer is responsible for potentially displaying and formatting the selected date;  
-- First day in week is Monday, always;  
-- Default language is English;  
+- The first day of the week is always Monday;  
+- The default language is English;
 - The language options are heavily simplified (names only for days, minDays and months);  
   
 #### To be implemented:  
   
-- **input + tooltip version**; (currently there's only the div based datepicker) 
+- **input + tooltip version**; (only the div based datepicker is currently available) 
 - **multiple date selection**;
+- **range selection**;
   
-Those would be the main features that need to be implemented further. There are many more features in the original, some of them don't apply here, others will be implemented based on interest or from pull requests.  
+Those are the main features that need to be implemented. There are more features available in the original, some of them don't apply here, others will be implemented based on interest or from pull requests.  
   
 ## Thanks  
   
