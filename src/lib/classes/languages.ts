@@ -58,7 +58,7 @@ export const AIR_LANGUAGES: Map<string, AirLanguage> = new Map([
         [ 'H', 'K', 'Sz', 'Cs', 'P', 'Sz', 'V' ],
         [ 'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December' ]
     )] as [string, AirLanguage],
-    
+
     ['it', new AirLanguage(
         [ 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica' ],
         [ 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa', 'Do' ],
@@ -93,6 +93,12 @@ export const AIR_LANGUAGES: Map<string, AirLanguage> = new Map([
         [ 'Luni', 'Marţi', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică' ],
         [ 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sa', 'Du' ],
         [ 'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie' ]
+    )] as [string, AirLanguage],
+
+    ['ru', new AirLanguage(
+        [ 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' ],
+        [ 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс' ],
+        [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' ]
     )] as [string, AirLanguage],
 
     ['sk', new AirLanguage(
