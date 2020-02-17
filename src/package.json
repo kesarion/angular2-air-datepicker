@@ -1,7 +1,7 @@
 {
   "name": "angular2-air-datepicker",
   "description": "Angular2 Datepicker | Native implementation of air-datepicker",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "repository": "kesarion/angular2-air-datepicker",
   "peerDependencies": {
     "@angular/common": "*",
