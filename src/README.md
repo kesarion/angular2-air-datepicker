@@ -14,26 +14,20 @@ npm i angular2-air-datepicker -S
   
 ## Usage  
   
-#### template:  
-  
-With an `options object` and `date object` from the component:  
+#### template:   
 ```html  
 <air-datepicker [airOptions]="options" [(airDate)]="date"></air-datepicker>  
 ```  
-> Notice how we're doing two way binding on date  
-  
-Leverage the `(airChange)=""` event to do something when the date changes.  
+> While you can use two way binding with airDate, it's recommended you listen to the airChange event for new values.
 ```html  
 <air-datepicker [airOptions]="options" (airChange)="dateChanged($event)"></air-datepicker>  
 ```  
-> The default selected date is the current date unless you pass another date to `airDate`. You can get the new selected date by passing `$event` to your handler function.  
+> The default value for `airDate` is `null` (no date selected). You can get the new selected date by passing `$event` to your handler function.  
   
-Input the options directly:  
 ```html  
-<air-datepicker [airOptions]="{ timepicker: true, format12h: true }" [(airDate)]="date" (airChange)="dateChanged()"></air-datepicker>  
-```  
-> You can use `[(airDate)]` and `(airChange)` at the same time.  
-  
+<air-datepicker [airOptions]="{ timepicker: true, format12h: true }" [airDate]="date" (airChange)="dateChanged($event)"></air-datepicker>  
+```
+>  You can set the options directly.
   
 #### component:  
   
@@ -83,17 +77,17 @@ export class HomeModule {}
   
 ### Options  
   
-> * **timepicker**: boolean = 'false';  
+> * **timepicker**: boolean = false;  
 >  
 > Display the time picker (hour & minute).  
   
-> * **format12h**: boolean = 'false';  
+> * **format12h**: boolean = false;  
 >  
 > For the timepicker, switch to a 12 hour format (AM/PM).  
   
 > * **language**: string = 'en';  
 >  
-> Choose a language for localization (day and month names).  
+> Choose a language for localization (currently available: cs, da, de, en, es, fi, fr, hu, it, jp, nl, pl, pt, ro, ru, sk, zh).  
   
 > * **hourStep**: number = 1;  
 >  
@@ -102,12 +96,18 @@ export class HomeModule {}
 > * **minuteStep**: number = 1;  
 >  
 > The number of minutes the minute slider will move at a time when dragged.  
+
+> * **range**: bool = false;  
+>  
+```html  
+<air-datepicker [airOptions]="{ range: true }" [airDate]="date" (airChange)="dateChanged()" [airEndDate]="endDate" (airEndChange)="endDateChanged()"></air-datepicker>  
+```   
+> **Note**: `airDate` and `airEndDate` are optional, but if you do set them, you should always use single way binding in tandem with the respective events (airEndDate doesn't support two way binding).  
   
 > * **enabledDateRanges**: DateRange[];  
 >  
-> An array of date ranges (objects with `start` and `end` Date properties), that defines which dates are selectable. This works as both a minDate/maxDate option as well as a selective date enabler/disabler. 
+> An array of date ranges (objects with `start` and `end` Date properties), that defines which dates are selectable. This works both as a minDate/maxDate option, as well as a selective date enabler/disabler. 
 ```javascript  
-// Example:  
 const now = Date.now();  
 const days = 24 * 60 * 60 * 1000;  
   
@@ -120,7 +120,7 @@ const options = {
 ```  
 > **Note**: You'll usually want to set the `start` and `end` dates to the start and end of the day (00:00, 23:59), not doing so may result in unintended behaviors in non GMT timezones, unless you know what you're doing. The `timepicker` option is currently not supported.   
 > **Hint**: If you only need a minDate, just set one DateRange with the `end` set to a very distant date. 
-  
+
 ## Notes  
 
 #### Build and Development
@@ -135,14 +135,10 @@ ng serve angular2-air-datepicker-app
 ```
 
 The library is the main project, you can build it with `ng build` and run the tests with `ng test` (requires chrome). The `angular2-air-datepicker-app` project is a test app you can use to test the library and any changes you might have made to it. You'll need to rebuild the library after any change or use `ng build --watch` in another terminal window or tab.
-  
-#### Version 1.x:
- 
-The library should now be compatible with Angular 6+. Starting with version 1.0, you should import the module instead of the component.  
-  
-#### Differences from the original:  
 
-There are a few differences from the original and many features are not yet implemented. Pull requests are humbly encouraged and accepted. If there is enough support for a feature it will likely be done quicker; please create an issue for any request.    
+> Note: The `src/package.json` needs to have its version changed manually (before `npm version <type>; npm publish`, for deployment purposes). Same for the `src/README.md`. There's a better way to do this, but not this day!
+
+#### Differences from the original:   
 
 - A Date Object is used as input/output; The developer is responsible for potentially displaying and formatting the selected date;  
 - The first day of the week is always Monday;  
@@ -153,10 +149,13 @@ There are a few differences from the original and many features are not yet impl
   
 - **input + tooltip version**; (only the div based datepicker is currently available) 
 - **multiple date selection**;
-- **range selection**;
   
-Those are the main features that need to be implemented. There are more features available in the original, some of them don't apply here, others will be implemented based on interest or from pull requests.  
+#### Future:  
+With 2.x out, this package's development may be at an end. I may not be able to continue maintaining and updating it 😔 Although many of the remaining features have been implemented, bugs have been squashed and testing done, this means that any new changes you may require will need to be done by you, whether through a fork or a new project.
+
+On the bright side, I expect it will continue working for a long time in its current state 😄 or with some slight adjustment at some point 🤔  
   
-## Thanks  
-  
-A big thank you to [t1m0n/air-datepicker](https://github.com/t1m0n/air-datepicker) for making this possible with a fantastic datepicker design!
+If someone creates a new home for this project at some point, please keep an eye on the issues here for a while, directing people to a more up-to-date version 😉  
+    
+## Thanks    
+ A big thank you to [t1m0n/air-datepicker](https://github.com/t1m0n/air-datepicker) for making this possible with a fantastic datepicker design! And to those who take up the torch to keep it updated! 🎉

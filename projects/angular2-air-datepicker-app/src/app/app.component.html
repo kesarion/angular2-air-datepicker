@@ -1,8 +1,10 @@
 <div class="container">
   <div class="box">
-    <air-datepicker [airDate]="date"
+    <air-datepicker [(airDate)]="date"
+                    [airEndDate]="endDate"
                     [airOptions]="options"
                     (airChange)="dateChanged($event)"
+                    (airEndChange)="endDateChanged($event)"
                     (airMonthSelect)="monthSelected($event)"
                     (airYearSelect)="yearSelected($event)"
     ></air-datepicker>

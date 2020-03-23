@@ -32,5 +32,4 @@ deploy:
   api_key: $NPM_TOKEN
   skip_cleanup: true
   on:
-    tags: true
     repo: kesarion/angular2-air-datepicker

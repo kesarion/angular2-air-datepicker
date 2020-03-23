@@ -1,3 +1,10 @@
+# 2.0.0 (2020-03-23)   
+    
+### Changes    
+    
+* **Date input internals**: The internals related to date input have changed. `airDate` is now optional (null by default) and a selected date can be deselected (set to null). Two way binding is still supported for `airDate`, but it shouldn't be used anymore. These internal changes may break some very specific implementations, though very unlikely, this is the main reason for the bump to v2.
+* **Ranges**: With `options.range = true` you can now select a range! 
+
 ## 1.2.4 (2019-03-09)
 
 ### Features
