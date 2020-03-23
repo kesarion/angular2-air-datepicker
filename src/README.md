@@ -136,7 +136,7 @@ ng serve angular2-air-datepicker-app
 
 The library is the main project, you can build it with `ng build` and run the tests with `ng test` (requires chrome). The `angular2-air-datepicker-app` project is a test app you can use to test the library and any changes you might have made to it. You'll need to rebuild the library after any change or use `ng build --watch` in another terminal window or tab.
 
-> Note: The `src/package.json` needs to have its version changed manually (before `npm version <type>; npm publish`, for deployment purposes). Same for the `src/README.md`. There's a better way to do this, but not this day!
+> Note: The `src/package.json` needs to have its version changed manually (before `npm version <type>`, for deployment purposes; the actual deployment is done automatically on every push to master). Same for the `src/README.md`. There's a better way to do this, but not this day!
 
 #### Differences from the original:   
 
