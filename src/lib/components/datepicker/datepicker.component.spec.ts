@@ -100,6 +100,7 @@ describe('DatepickerComponent', () => {
       datepickerCells.forEach((dateCell, i) => {
         click(dateCell);
 
+        expect(selectedDate).toEqual(i);
         expect(dateCell.nativeElement.textContent).toEqual(`${component.airCalendar.airDays[i].date}`);
       });
     });

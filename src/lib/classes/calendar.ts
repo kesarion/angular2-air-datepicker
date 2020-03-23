@@ -37,13 +37,13 @@ export class AirCalendar {
       const prevAirMonth = new AirMonth(this.month - 1, this.year);
       for (let dateNo = daysInLastMonth - firstDayOfMonth + 1; dateNo <= daysInLastMonth; dateNo++) {
         this.airDays.push(
-          new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(prevAirMonth.year, prevAirMonth.month, dateNo)), true)
+          new AirDay(dateNo, prevAirMonth.month, prevAirMonth.year, weekend.progress(), this.airOptions.isDisabled(new Date(prevAirMonth.year, prevAirMonth.month, dateNo)), true)
         );
       }
     }
 
     for (let dateNo = 1; dateNo <= daysInMonth; dateNo++) {
-      this.airDays.push(new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(this.year, this.month, dateNo))));
+      this.airDays.push(new AirDay(dateNo, this.month, this.year, weekend.progress(), this.airOptions.isDisabled(new Date(this.year, this.month, dateNo))));
     }
 
     if (this.date > daysInMonth) {
@@ -59,7 +59,7 @@ export class AirCalendar {
     const nextAirMonth = new AirMonth(this.month + 1, this.year);
     for (let dateNo = 1; dateNo <= (daysSoFar > 35 ? 42 : 35) - daysSoFar; dateNo++) {
       this.airDays.push(
-        new AirDay(dateNo, weekend.progress(), this.airOptions.isDisabled(new Date(nextAirMonth.year, nextAirMonth.month, dateNo)), true)
+        new AirDay(dateNo, nextAirMonth.month, nextAirMonth.year, weekend.progress(), this.airOptions.isDisabled(new Date(nextAirMonth.year, nextAirMonth.month, dateNo)), true)
       );
     }
   }
@@ -117,13 +117,17 @@ export class AirMonth {
 
 export class AirDay {
   date: number;
+  month: number;
+  year: number;
   weekend: boolean;
   other: boolean;
   current: boolean;
   disabled: boolean;
 
-  constructor (date: number, weekend = false, disabled = false, other = false, current = false) {
+  constructor (date: number, month: number, year: number, weekend = false, disabled = false, other = false, current = false) {
     this.date = date;
+    this.month = month;
+    this.year = year;
     this.weekend = weekend;
     this.disabled = disabled;
     this.other = other;
