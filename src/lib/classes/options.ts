@@ -23,7 +23,9 @@ export class AirOptions {
         return date1 && date2 &&
             date1.getUTCFullYear() == date2.getUTCFullYear() &&
             date1.getUTCMonth() == date2.getUTCMonth() &&
-            date1.getUTCDate() == date2.getUTCDate();
+            date1.getUTCDate() == date2.getUTCDate() &&
+            date1.getUTCHours() == date2.getUTCHours() &&
+            date1.getUTCMinutes() == date2.getUTCMinutes();
     }
 
     isDisabled (date: Date) {
